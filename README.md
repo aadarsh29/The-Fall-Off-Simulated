@@ -55,8 +55,8 @@ Click below to listen and compare the two tracks side by side:
     *   Peak-to-Average Power Ratio (PAPR) Characterization
 
 ### 🎧 How to Run
-1. Clone the repository.
-2. Place your source audio in the `/input` folder.
-3. Run `main_stadium_sim.m`.
-4. Check the `/output` folder for your processed `.wav`.
+1. Download the `playing_at_wrigleys.m` file and the `wrigleys_ir.mp3`.
+2. Place your source audio in the same folder.
+3. Run `playing_at_wrigeys.m`.
+4. Check the same folder for your processed `.wav`.
 
