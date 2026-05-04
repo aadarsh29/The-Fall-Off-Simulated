@@ -101,9 +101,4 @@ final_mix = final_mix / max(abs(final_mix));
 % --- STAGE 5: EXPORT & VISUALIZE ---
 audiowrite('J_Cole_Live_At_Wrigleys.wav', final_mix, fs);
 
-subplot(2,1,1);
-plot(h); title('The Wrigley Impulse Response (Bat Hit)');
-subplot(2,1,2);
-plot(final_mix); title('Final "Live at Wrigleys" Output');
-
 fprintf('Success! Your track is ready.\n');
