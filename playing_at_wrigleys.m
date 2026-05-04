@@ -1,18 +1,18 @@
-% Project  : The Fall Off Simulated
-% Author   : Aadarsh Tobby Kakkamthottil
+% Project: The Fall Off Simulated
+% Author: Aadarsh Tobby Kakkamthottil
 % University: University of Massachusetts, Amherst
-% Major    : Electrical and Computer Engineering
-% Date     : May 3, 2026
+% Major: Electrical and Computer Engineering
+% Date: May 3, 2026
 
 
-%% --- STAGE 0: INITIALIZATION ---
+% --- STAGE 0: INITIALIZATION ---
 clear; clc; close all;
 
 % Filenames
 song_file = 'J_Cole_Bombs_in_the_Ville.mp3';
 ir_file = 'wrigleys_ir.mp3';
 
-%% --- STAGE 1: LOAD & RESAMPLE ---
+% --- STAGE 1: LOAD & RESAMPLE ---
 
 % fs_s and fs_ir are 44.1 kHz as expected  
 % song_raw and ir_raw are basically vector arrays representing their 
@@ -34,7 +34,7 @@ if fs_s ~= fs_ir
 end
 fs = fs_s;
 
-%% --- STAGE 2: IR CONDITIONING (The "Wrigley" Prep) ---
+% --- STAGE 2: IR CONDITIONING (The "Wrigley" Prep) ---
 % 1. Crop to the crack: Find the peak of the bat hit
 
 % stores the index of the peak of the impulse and 
@@ -61,7 +61,7 @@ fade_len = round(0.1 * fs);
 window = [ones(length(ir_clean)-fade_len, 1); linspace(1, 0, fade_len)'];
 h = ir_clean .* window;
 
-%% --- STAGE 3: THE CONVOLUTION ENGINE ---
+% --- STAGE 3: THE CONVOLUTION ENGINE ---
 Lx = length(song);
 Lh = length(h);
 Ly = Lx + Lh - 1;
@@ -85,7 +85,7 @@ Y_freq = X_freq .* H_freq;
 y_wet = real(ifft(Y_freq)); 
 y_wet = y_wet(1:Ly); % Trim to correct length
 
-%% --- STAGE 4: THE PROFESSIONAL MIX ---
+% --- STAGE 4: THE PROFESSIONAL MIX ---
 % Normalize the wet signal so it doesn't overpower the dry
 y_wet = y_wet / max(abs(y_wet));
 
@@ -98,7 +98,7 @@ final_mix = 0.5 * song_padded + 0.5 * y_wet;
 % Final Normalization to avoid clipping at 0dB
 final_mix = final_mix / max(abs(final_mix));
 
-%% --- STAGE 5: EXPORT & VISUALIZE ---
+% --- STAGE 5: EXPORT & VISUALIZE ---
 audiowrite('J_Cole_Live_At_Wrigleys.wav', final_mix, fs);
 
 subplot(2,1,1);
